@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nrg_parser"
+version = "0.1.0"
+authors = [
+  { name="NRG Systems, Inc.", email="support@nrgsystems.com" },
+]
+description = "IEA task 43 parsers for NRG Systems, Inc. SymphoniePRO loggers"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+keywords = ["wind-energy", "iea-task-43", "nrg-systems", "symphonie", "symphoniepro"]
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+   "numpy>=1.23.4",
+   "pandas>=1.5.1",
+   "python-dateutil>=2.8.2",
+   "nrgpy>=1.8.4",
+   "pyarrow>=10.0.1",
+]
+
+[project.optional-dependencies]
+dev = [
+   "pylint>=2.14.0",
+   "toml>=0.10.2",
+   "sphinx",
+   "ruff",
+]
+test = [
+   "pytest",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/nrgpy/nrg-parser"
+"Bug Tracker" = "https://github.com/nrgpy/nrg-parser/issues"
