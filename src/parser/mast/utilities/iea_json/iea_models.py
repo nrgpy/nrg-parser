@@ -12,7 +12,7 @@ class MeasurementLocation:
     name = None
     latitude_ddeg = None
     longitude_ddeg = None
-    measurement_station_type_id = 'mast'
+    measurement_station_type_id = "mast"
     notes = None
     update_at = None
     logger_main_config = None
@@ -40,19 +40,20 @@ class LoggerMainConfig:
     notes = None
     update_at = None
 
-    def __init__(self,
-                 logger_serial_number,
-                 logger_firmware_version,
-                 logger_model_name,
-                 logger_oem_id,
-                 logger_id,
-                 logger_name,
-                 date_from,
-                 date_to,
-                 offset_from_utc_hrs,
-                 notes,
-                 update_at
-                 ):
+    def __init__(
+        self,
+        logger_serial_number,
+        logger_firmware_version,
+        logger_model_name,
+        logger_oem_id,
+        logger_id,
+        logger_name,
+        date_from,
+        date_to,
+        offset_from_utc_hrs,
+        notes,
+        update_at,
+    ):
         self.logger_serial_number = logger_serial_number
         self.logger_firmware_version = logger_firmware_version
         self.logger_model_name = logger_model_name

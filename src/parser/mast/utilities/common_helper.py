@@ -13,16 +13,22 @@ def remove_files_in_dir(local_dir_path):
 
 
 def get_timeseries_raw_path(measurement_location_uuid):
-    return util_func.adl_path_join(get_timeseries_path(measurement_location_uuid), 'Raw')
+    return util_func.adl_path_join(
+        get_timeseries_path(measurement_location_uuid), "Raw"
+    )
 
 
 def get_timeseries_raw_logger_path(measurement_location_uuid, logger_serial_number):
-    return util_func.adl_path_join(get_timeseries_path(measurement_location_uuid),
-                                   'Raw logger files',
-                                   logger_serial_number)
+    return util_func.adl_path_join(
+        get_timeseries_path(measurement_location_uuid),
+        "Raw logger files",
+        logger_serial_number,
+    )
 
 
 def get_timeseries_path(measurement_location_uuid):
-    return util_func.adl_path_join(collection_config.DL_DEVELOPMENT_MEASUREMENT_LOCATION,
-                                   str(measurement_location_uuid).upper(),
-                                   'Time series')
+    return util_func.adl_path_join(
+        collection_config.DL_DEVELOPMENT_MEASUREMENT_LOCATION,
+        str(measurement_location_uuid).upper(),
+        "Time series",
+    )
