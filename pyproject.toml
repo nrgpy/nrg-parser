@@ -3,15 +3,14 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-name = "nrg_parser"
+name = "nrg-parser"
 version = "0.1.0"
 authors = ["David Carlson <drc@nrgsystems.com>"]
 description = "IEA task 43 parsers for NRG Systems, Inc. SymphoniePRO loggers"
 readme = "README.md"
-requires-python = ">=3.10"
 packages = [
    {include = "common", from = "src"},
-   {include = "parser", from = "src"},
+   {include = "nrg_parser", from = "src"},
 ]
 license = "MIT"
 keywords = ["wind-energy", "iea-task-43", "nrg-systems", "symphonie", "symphoniepro"]
@@ -23,6 +22,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 [tool.poetry.dependencies]
+python = "^3.10"
 numpy = "^1.23.4"
 pandas = "^1.5.1"
 python-dateutil = "^2.8.2"
@@ -33,13 +33,9 @@ pyarrow = "^10.0.1"
 black = "^23.3.0"
 pylint = "^2.14.0"
 toml = "^0.10.2"
-sphinx = "^"
-ruff = "^"
-jupyterlab = "^"
+sphinx = "^7.0.1"
+ruff = "^0.0.275"
+jupyterlab = "^4.0.2"
 
 [tool.poetry.group.test.dependencies]
-pytest = "^"
-
-[project.urls]
-"Homepage" = "https://github.com/nrgpy/nrg-parser"
-"Bug Tracker" = "https://github.com/nrgpy/nrg-parser/issues"
+pytest = "^7.4.0"

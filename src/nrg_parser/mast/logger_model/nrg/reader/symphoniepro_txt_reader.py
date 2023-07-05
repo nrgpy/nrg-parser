@@ -1,7 +1,9 @@
 import logging
 import pandas as pd
-import src.common.utilities.function_helper as util_func
-from src.parser.mast.constants import iea_mapping_config
+import common.utilities.function_helper as util_func
+from common.logger import logger
+from nrg_parser.mast.constants import iea_mapping_config
+import traceback
 
 
 class SymphonieProSiteInfo:
@@ -41,8 +43,13 @@ class SymphonieProTxtReader:
         Initializes SymphonieProTxt by reading/parsing its file content,
         both headers and timeseries data.
 
-        Args:
+        Parameters:
+        -----------
             txt_filepath: symphonie pro txt data file path
+
+        Attributes:
+        -----------
+        
         """
         # initialize
         self.header_sections_dict = {}
@@ -58,6 +65,7 @@ class SymphonieProTxtReader:
             # read headers start
             line_ctr = 0
 
+            logger.debug(f"opening file: {txt_filepath}")
             with open(txt_filepath, "rt") as file_data:
                 for line in file_data:
                     line_ctr += 1
@@ -113,7 +121,8 @@ class SymphonieProTxtReader:
                     sep="\t",
                     encoding="utf-8",
                 )
-            except:
+            except Exception:
+                logger.debug(traceback.format_exc())
                 pass  # file has no data
 
             # get first and last timestamp if timeseries data is available
@@ -128,6 +137,12 @@ class SymphonieProTxtReader:
             # handle any possible exception
             logging.error(f"Failed to load file {txt_filepath} error: str{e}")
 
+    def get_all_metadata(self):
+        self.get_header()
+        self.get_site_info()
+        self.get_iea_logger_main_config()
+        self.get_iea_sensor_config()
+        
     def get_header(self, header_section_name=None, header=None):
         """
         Helper method that returns symphonie pro txt file in dictionary format if
@@ -145,18 +160,20 @@ class SymphonieProTxtReader:
             section = self.header_sections_dict[header_section_name]
             if header is not None:
                 if header in section:
+                    self.header = section[header]
                     return section[header]
                 else:
                     logging.debug(f"{header} header does not exists.")
+                    self.header = None
                     return None
             else:
+                self.header = section
                 return section
 
         else:
             logging.debug(f"{header_section_name} section does not exists")
+            self.header = None
             return None
-
-        return self.header_sections_dict
 
     def get_site_info(self):
         """
@@ -234,7 +251,7 @@ class SymphonieProTxtReader:
             header_section_name=ipack_history, header="Firmware"
         )
 
-        return site_info
+        self.site_info = site_info
 
     def get_iea_logger_main_config(self):
         """
@@ -281,8 +298,7 @@ class SymphonieProTxtReader:
         logger_main_config_dict["firmware_version"] = self.get_header(
             header_section_name=logger_history, header="Firmware"
         )
-
-        return logger_main_config_dict
+        self.logger_main_config_dict = logger_main_config_dict
 
     def get_iea_sensor_config(self):
         """
@@ -295,11 +311,28 @@ class SymphonieProTxtReader:
 
         # mast sensor configuration
         for ch_info in self.sensor_history_list:
-            sensor_config_dict = {
-                "connection_channel": util_func.try_int(ch_info["Channel"]),
-                "sensor_serial_number": ch_info["Serial Number"],
-            }
-
+            sensor_config_dict = {}
+            match ch_info["Type"]:
+                case "Calculated":
+                    pass
+                    # sensor_config_dict["sensor_serial_number"] = None
+                    # sensor_config_dict["logger_height"] = None
+                    # sensor_config_dict["logger_slope"] = None
+                    # sensor_config_dict["boom_orientation_deg"] = None
+                case _:
+                    sensor_config_dict["connection_channel"] = util_func.try_int(ch_info["Channel"])
+                    sensor_config_dict["sensor_serial_number"] = ch_info["Serial Number"]
+                    sensor_config_dict["logger_height"] = util_func.try_float(ch_info["Height"])
+                    sensor_config_dict["logger_slope"] = util_func.try_float(
+                        ch_info["Scale Factor"]
+                    )
+                    sensor_config_dict["logger_offset"] = util_func.try_float(ch_info["Offset"])
+                    sensor_config_dict["boom_orientation_deg"] = util_func.try_float(
+                        ch_info["Bearing"]
+                    )
+                    sensor_config_dict["boom_orientation_deg"] = util_func.try_float(
+                        ch_info["Bearing"]
+                    )
             if ch_info["Units"] is not None:
                 if ch_info["Units"].lower() in iea_mapping_config.IEA_UNIT_DICT:
                     # map unit to iea task43
@@ -311,17 +344,6 @@ class SymphonieProTxtReader:
             else:
                 sensor_config_dict["measurement_unit_id"] = None
 
-            sensor_config_dict["logger_height"] = util_func.try_float(ch_info["Height"])
-            sensor_config_dict["logger_slope"] = util_func.try_float(
-                ch_info["Scale Factor"]
-            )
-            sensor_config_dict["logger_offset"] = util_func.try_float(ch_info["Offset"])
-            sensor_config_dict["boom_orientation_deg"] = util_func.try_float(
-                ch_info["Bearing"]
-            )
-            sensor_config_dict["boom_orientation_deg"] = util_func.try_float(
-                ch_info["Bearing"]
-            )
             if ch_info["Type"] == "Vane":
                 sensor_config_dict[
                     "vane_dead_band_orientation_deg"
@@ -420,4 +442,4 @@ class SymphonieProTxtReader:
             sensor_config_dict["column_name_list"] = ";".join(column_name_list)
             sensor_config_dict_list.append(sensor_config_dict)
 
-        return sensor_config_dict_list
+        self.sensor_config_dict_list = sensor_config_dict_list

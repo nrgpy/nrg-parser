@@ -4,7 +4,7 @@ import json
 import numpy as np
 import pandas as pd
 
-from src.parser.mast.utilities.iea_json.iea_models import (
+from src.nrg_parser.mast.utilities.iea_json.iea_models import (
     LoggerMainConfig,
     IEAMain,
     MeasurementLocation,

@@ -4,14 +4,13 @@ import os
 import sys
 import concurrent
 import nrgpy
-from concurrent.futures.thread import ThreadPoolExecutor
 
 import src.common.utilities.function_helper as util_func
-import src.logger.mast.utilities.iea_json.nrg_config as nrg_config
-from src.logger.mast.logger_model.nrg.reader.symphoniepro_txt_reader import (
+import src.nrg_parser.mast.utilities.iea_json.nrg_config as nrg_config
+from src.nrg_parser.mast.logger_model.nrg.reader.symphoniepro_txt_reader import (
     SymphonieProTxtReader,
 )
-from src.logger.mast.utilities.iea_json.convert_to_iea_json import create_iea_json
+from src.nrg_parser.mast.utilities.iea_json.convert_to_iea_json import create_iea_json
 
 
 def main():
