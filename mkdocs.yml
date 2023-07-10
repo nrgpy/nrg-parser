@@ -42,25 +42,19 @@ plugins:
           options:
             docstring_options:
               ignore_init_summary: true
-            # docstring_section_style: list
-            # heading_level: 1
-            # merge_init_into_class: true
-            # separate_signature: true
-            # show_root_heading: false
-            # show_symbol_type_heading: true
-            # show_symbol_type_toc: true
-            # signature_crossrefs: true
+              docstring_section_style: list
+              heading_level: 1
+              merge_init_into_class: true
+              separate_signature: true
+              show_root_heading: false
+              show_symbol_type_heading: true
+              show_symbol_type_toc: true
+              signature_crossrefs: true
             show_submodules: true
-        # crystal:
 
 markdown_extensions: 
   - pymdownx.highlight
 
 nav:
   - Home: index.md
-  - Reference:
-    - home: reference.md
-    - nrg-parser: 
-        reference/nrg_parser/index.md
-    - common: 
-        reference/common/index.md
+  - Reference: reference.md
