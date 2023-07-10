@@ -38,7 +38,7 @@ class SymphonieProTxtReader:
     This class takes Symphonie Desktop Pro rld -> txt converted file.
     """
 
-    def __init__(self, txt_filepath):
+    def __init__(self, txt_filepath: str):
         """
         Initializes SymphonieProTxt by reading/parsing its file content,
         both headers and timeseries data.
@@ -49,7 +49,11 @@ class SymphonieProTxtReader:
 
         Attributes:
         -----------
-        
+        first_timestamp: datetime
+        last_timestamp: datetime
+        header_sections_dict: dict
+        sensor_history_list: list
+        header_line_ctr: int 
         """
         # initialize
         self.header_sections_dict = {}
