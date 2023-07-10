@@ -1,0 +1,66 @@
+site_name: "nrg-parser"
+site_description: "IEA Task 43 parser for NRG Systems' Symphonie loggers"
+site_url: ""
+repo_url: "https://github.com/nrgpy/nrg-parser"
+repo_name: "nrgpy/nrg-parser"
+
+theme:
+  name: "material"
+  logo: "https://www.gravatar.com/avatar/6282094b092c756acc9f7552b164edfe?s=24"
+  features:
+  - announce.dismiss
+  - content.action.edit
+  - content.action.view
+  - content.code.annotate
+  - content.code.copy
+  - content.tooltips
+  - navigation.footer
+  - navigation.indexes
+  - navigation.sections
+  - navigation.tabs
+  - navigation.tabs.sticky
+  - navigation.top
+  - search.highlight
+  - search.suggest
+  - toc.follow
+
+plugins: 
+  - markdown-exec
+  - autorefs
+  - search
+  - gen-files:
+      scripts:
+      - scripts/gen_ref_nav.py
+  - literate-nav:
+      nav_file: SUMMARY.txt
+  - mkdocstrings:
+      enabled: !ENV [ENABLE_MKDOCSTRINGS, true]
+      enable_inventory: true
+      handlers:
+        python:
+          paths: [src/nrg_parser, src/common]
+          options:
+            docstring_options:
+              ignore_init_summary: true
+            # docstring_section_style: list
+            # heading_level: 1
+            # merge_init_into_class: true
+            # separate_signature: true
+            # show_root_heading: false
+            # show_symbol_type_heading: true
+            # show_symbol_type_toc: true
+            # signature_crossrefs: true
+            show_submodules: true
+        # crystal:
+
+markdown_extensions: 
+  - pymdownx.highlight
+
+nav:
+  - Home: index.md
+  - Reference:
+    # - home: reference/index.md
+    - nrg-parser: 
+        reference/nrg_parser/index.md
+    - common: 
+        reference/common/index.md

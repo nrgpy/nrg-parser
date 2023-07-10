@@ -14,3 +14,4 @@ venv/
 *.swo
 
 !.gitignore
+!nrg-parser_example.ipynb
