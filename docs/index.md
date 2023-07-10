@@ -1,4 +1,4 @@
-# nrg-parser Documentation
+# nrg-parser | Documentation
 
 IEA task 43 parsers for NRG Systems, Inc. SymphoniePRO loggers.
 

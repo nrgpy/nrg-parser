@@ -59,7 +59,7 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Reference:
-    # - home: reference/index.md
+    - home: reference.md
     - nrg-parser: 
         reference/nrg_parser/index.md
     - common: 

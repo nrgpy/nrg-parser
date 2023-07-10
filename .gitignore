@@ -5,6 +5,7 @@
 .vscode/
 build/
 dist/
+site/
 temp/
 venv/
 
