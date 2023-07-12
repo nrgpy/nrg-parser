@@ -15,6 +15,10 @@ This package takes the TXT exports of SymphoniePRO data files, and converts the 
 
 __NOTE:__ For converting binary SymphoniePRO/Symphonie Classic data files into TXT, see the [nrgpy](https://github.com/nrgpy/nrgpy) repository.
 
+## Documentation
+
+https://nrgpy.github.io/nrg-parser/
+
 ## Examples
 
 See the [nrg-parser_example.ipynb](./nrg-parser_example.ipynb) Jupyter Notebook for usage examples.
