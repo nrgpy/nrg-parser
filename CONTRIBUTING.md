@@ -2,7 +2,7 @@
 
 ## Issues
 
-Use the Issues section of **nrg_parser** in Github for
+Use the Issues section of **nrg_parser** in GitHub for
 
 - Reporting bugs
 - Requesting new features or improvements
@@ -16,4 +16,6 @@ To submit new features or bug fixes
 1. Commit your changes
 1. Open a pull request
 
-For a good example of this process, see the [First Contributions](https://github.com/firstcontributions/first-contributions#first-contributions) Github repository.
+For a good example of this process, see the [First Contributions](https://github.com/firstcontributions/first-contributions#first-contributions) GitHub repository.
+
+__nrg-parser__ uses [poetry](https://python-poetry.org/) for package management. Follow the steps there to get poetry installed on your machine, then run `poetry update` to create a development environment.
