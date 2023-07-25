@@ -4,8 +4,10 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "nrg-parser"
-version = "0.1.0"
-authors = ["David Carlson <drc@nrgsystems.com>"]
+version = "0.1.1"
+authors = [
+    "David Carlson <drc@nrgsystems.com>",
+]
 description = "IEA task 43 parsers for NRG Systems, Inc. SymphoniePRO loggers"
 readme = "README.md"
 packages = [
@@ -24,7 +26,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.10"
 numpy = "^1.23.4"
-pandas = "^1.5.1"
+pandas = ">=1.5, >=2"
 python-dateutil = "^2.8.2"
 nrgpy = "^1.8.4"
 pyarrow = "^10.0.1"
