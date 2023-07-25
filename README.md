@@ -8,7 +8,7 @@ IEA task 43 parsers for NRG Systems, Inc. SymphoniePRO loggers.
 |-------------------------|-----------------------------------------------------------------------|
 | Website and source      | <https://github.com/nrgpy/nrg-parser>                                 |
 | Documentation           | <https://nrgpy.github.io/nrg-parser/>                                 |
-| IEA Task 43 Github page | <https://github.com/IEA-Task-43/digital_wra_data_standard> |
+| IEA Task 43 GitHub page | <https://github.com/IEA-Task-43/digital_wra_data_standard> |
 
 ## Installation
 
