@@ -20,4 +20,4 @@ jobs:
                 source venv/bin/activate && pip install -e .[dev,test]
             - name: Run pytest
               run: |
-                pytest .
+                venv/bin/python -m pytest .
