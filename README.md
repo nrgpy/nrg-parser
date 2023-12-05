@@ -31,4 +31,3 @@ See the [nrg-parser_example.ipynb](./nrg-parser_example.ipynb) Jupyter Notebook 
 Contributions to this project are welcome!
 
 Follow the [Contributing Guidelines](./CONTRIBUTING.md) to be a part of it!
-
