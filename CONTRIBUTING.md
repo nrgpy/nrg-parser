@@ -18,4 +18,29 @@ To submit new features or bug fixes
 
 For a good example of this process, see the [First Contributions](https://github.com/firstcontributions/first-contributions#first-contributions) GitHub repository.
 
-__nrg-parser__ uses [poetry](https://python-poetry.org/) for package management. Follow the steps there to get poetry installed on your machine, then run `poetry update` to create a development environment.
+## Local Dev
+
+To setup a local development environment we recommend using python's venv module.
+
+Follow these steps to clone this repo, setup a local dev environment, and checkout
+a new branch to edit
+
+### Windows
+
+```powershell
+git clone https://github.com/nrgpy/nrg-parser
+cd nrg-parser
+python -m venv venv
+.\venv\Scripts\activate
+pip install -e .[dev,test]
+```
+
+### Linux/Mac
+
+```bash
+git clone https://github.com/nrgpy/nrg-parser
+cd nrg-parser
+python3 -m venv venv
+source venv/bin/activate
+pip install -e .[dev,test]
+```
