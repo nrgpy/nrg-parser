@@ -4,7 +4,7 @@ requires = ["setuptools", "wheel"]
 
 [project]
 name = "nrg-parser"
-version = "0.2.0"
+version = "0.2.1"
 authors = [
     {name = "David Carlson", email = "drc@nrgsystems.com"},
 ]
@@ -49,9 +49,13 @@ dev = [
 ]
 
 docs = [
-    'mkdocs',
     'markdown-exec',
+    'mkdocs',
+    'mkdocs-autorefs',
+    'mkdocs-gen-files',
+    'mkdocs-literate-nav',
     'mkdocs-material',
+    'mkdocstrings[python]',
 ]
 
 [tool.black]
