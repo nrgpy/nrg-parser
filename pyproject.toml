@@ -48,6 +48,10 @@ dev = [
     'types-toml',
 ]
 
+docs = [
+    'mkdocs-material',
+]
+
 [tool.black]
 include = [
     "src",
