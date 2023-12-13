@@ -1,49 +1,65 @@
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+build-backend = "setuptools.build_meta"
+requires = ["setuptools", "wheel"]
 
-[tool.poetry]
+[project]
 name = "nrg-parser"
-version = "0.1.1"
+version = "0.2.0"
 authors = [
-    "David Carlson <drc@nrgsystems.com>",
+    {name = "David Carlson", email = "drc@nrgsystems.com"},
+]
+maintainers = [
+    {name = "Alexandra Arntsen", email = "aea@nrgsystems.com"},
+    {name = "David Carlson", email = "drc@nrgsystems.com"},
 ]
 description = "IEA task 43 parsers for NRG Systems, Inc. SymphoniePRO loggers"
 readme = "README.md"
-packages = [
-   {include = "common", from = "src"},
-   {include = "nrg_parser", from = "src"},
-]
-license = "MIT"
 keywords = ["wind-energy", "iea-task-43", "nrg-systems", "symphonie", "symphoniepro"]
+requires-python = ">=3.10"
 classifiers = [
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
     "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
     "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
 ]
-[tool.poetry.dependencies]
-python = "^3.10"
-numpy = "^1.23.4"
-pandas = ">=1.5, >=2"
-python-dateutil = "^2.8.2"
-nrgpy = "^1.8.4"
-pyarrow = "^10.0.1"
+dependencies = [
+    "nrgpy",
+    "python-dateutil",
+    "pyarrow",
+]
 
-[tool.poetry.group.dev.dependencies]
-black = "^23.3.0"
-pylint = "^2.14.0"
-toml = "^0.10.2"
-sphinx = "^7.0.1"
-ruff = "^0.0.275"
-jupyterlab = "^4.0.2"
-mkdocstrings-python = "^1.1.2"
-markdown-exec = "^1.6.0"
-mkdocs-material = "^9.1.18"
-mkdocs-nav-enhancements = "^0.9.1"
-mkdocs-gen-files = "^0.5.0"
-mkdocs-literate-nav = "^0.6.0"
+[project.urls]
+Repository = "https://bitbucket.org/nrgsystems/logr_testing"
 
-[tool.poetry.group.test.dependencies]
-pytest = "^7.4.0"
+[project.optional-dependencies]
+test = [
+    'pytest',
+]
+
+dev = [
+    'black',
+    'jupyterlab',
+    'mypy',
+    'pandas-stubs',
+    'ruff',
+    'types-beautifulsoup4',
+    'types-openpyxl',
+    'types-requests',
+    'types-toml',
+]
+
+[tool.black]
+include = [
+    "src",
+    "tests",
+]
+exclude = ["__pycache__/"]
+
+[tool.mypy]
+exclude = ["build/"]
+
+[tool.mypy.nrgpy]
+ignore_missing_imports = true
+
+[tool.mypy.pandas]
+ignore_missing_imports = true
