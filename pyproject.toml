@@ -49,6 +49,8 @@ dev = [
 ]
 
 docs = [
+    'mkdocs',
+    'markdown-exec',
     'mkdocs-material',
 ]
 
